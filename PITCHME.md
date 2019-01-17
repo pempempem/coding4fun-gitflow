@@ -1,209 +1,164 @@
 # Git Flow
 
 ---
-@title[Git architecture]
+@title[Git Flow]
 
-@snap[west span-50]
+@snap[north span-50]
 @ul[spaced text-white]
-- Git is a distributed version control system (vs SVN which is centralized)
-- Most used => Github, GitLab, Local Git, Bitbucket
+- Workflow Gitflow is model of branching about delivery (write by Vincent Driessen)
+- git-flow => git extensions to provide high-level repository operations
 @ulend
 @snapend
 
-@snap[east span-50]
-![](assets/img/slide1.png)
+@snap[south span-50]
+![](assets/img/gitflow.png)
 @snapend
 
 ---
-@title[Git : CLONE]
-### @css[headline](Clone repository)
+@title[Git Flow : Init]
 
----
-@title[Git : CLONE]
-@snap[west span-50]
-### Clone : Get copy about remote repository
-@snapend
-
-@snap[east span-50]
-![](assets/img/slide2.png)
-@snapend
-
----
-@title[Trees]
-### @css[headline](Local Trees)
-
----
-@title[Trees]
-@snap[west span-50]
+@snap[north span-50]
 @ul[spaced text-white]
-- Local repository contains 3 trees
-- Working home : Contains source files
-- Index : Tempory space
-- HEAD : Last validation
+- git flow init => Initialize repository 
+- Two branchs => master & develop
+- master : official version
+- develop : integration branch
 @ulend
 @snapend
 
-@snap[east span-50]
-![](assets/img/slide3bis.png)
+@snap[south span-50]
+![](assets/img/gitflowinit.png)
 @snapend
 
 ---
-@title[Add and Commit]
-### @css[headline](Add and Commit)
+@title[Git Flow : Features]
 
----
-@title[Add and Commit]
+@snap[north span-50]
 @ul[spaced text-white]
-- Propose a change (add changeset in Index) : git add FILENAME
-- Valid changes (file added in HEAD): git commit -m 'Validation message'
+- One branch per functionnality (branch pushed to remote after for collaboration)
+- feature branch is base to develop branch
+- When feature is finished, branch is merged to develop
+- feature doesn't use master branch
 @ulend
+@snapend
+
+@snap[south span-50]
+![](assets/img/gitflowfeature.png)
+@snapend
 
 ---
-@title[Send changes]
-### @css[headline](Send changes)
+@title[Git Flow : Releases]
 
----
-@title[Send changes]
+@snap[north span-50]
 @ul[spaced text-white]
-- Send changes from HEAD to remote repository : git push origin master (git push REMOTE BRANCH)
-- You can add new remote : git remote add REMOTE_NAME SERVER
+- Release branch from develop
+- No feature, just bug fixing
+- Documentation, delivery etc ..
+- Merge to master & develop (optional: create tag)
 @ulend
+@snapend
+
+@snap[south span-50]
+![](assets/img/gitflowrelease.png)
+@snapend
 
 ---
-@title[Branch]
-### @css[headline](Branch)
+@title[Git Flow : Hotfix]
 
----
-@title[Branch]
+@snap[north span-50]
 @ul[spaced text-white]
-- Create new branch : git checkout -b feature_x
-- Change branch : git checkout master
-- Remove branch : git branch -d feature_x
-- Push branch to remote : git push origin feature_x
+- Branch from master (only for production hotfix)
+- Merge to master & develop (or current release)
 @ulend
+@snapend
 
----
-@title[Update & Merge]
-### @css[headline](Update & Merge)
-
----
-@title[Update & Merge]
-@ul[spaced text-white]
-- Update local repository : git pull
-- Merge branch : git merge BRANCH
-- git diff SOURCE_BRANCH TARGET_BRANCH
-@ulend
-
----
-@title[Others commands]
-### @css[headline](Others commands)
-
----
-@title[Others commands]
-@ul[spaced text-white]
-- Create tag : git tag VERSION ID (get ID with git log) (ex : git tag 1.0.0 1b2e1d63ff)
-- Cancel local changeset : git checkout -- FILENAME
-- git diff SOURCE_BRANCH TARGET_BRANCH
-- Remove all changes and local validation : git fetch origin & git reset --hard origin/master
-@ulend
+@snap[south span-50]
+![](assets/img/gitflowhotfix.png)
+@snapend
 
 ---?color=#F6D365
-@title[Contrib in open source project]
-@box[bg-orange text-white rounded demo-box-pad](Contrib in open source project)
+@title[Workshop gitflow]
+@box[bg-orange text-white rounded demo-box-pad](Workshop gitflow)
 
 ---
-@title[FORK]
-@snap[north span-50]
-### FORK my repository
-@snapend
-
-@snap[south span-50]
-https://github.com/LGouellec/coding4fun-git
-![](assets/img/fork.png)
-@snapend
-
----
-@title[CLONE]
-@snap[north span-50]
-### CLONE your repository
-@snapend
-
-@snap[south span-50]
-![](assets/img/clone.png)
-@snapend
-
----
-@title[Branch]
-@snap[north span-50]
-### Create your branch
-@snapend
-
-@snap[south span-50]
-git checkout -b YOUR_FEATURE_NAME
-![](assets/img/branch.png)
-@snapend
-
----
-@title[Make your changes]
-@snap[west span-50]
-@ul[spaced text-white]
-- Make your changes
-- Don't forget to add changed file to index : (git add filename)
-- git commit -m 'Added feature'
-- git push origin my-new-f
-@ulend
-@snapend
-
-@snap[east span-50]
-![](assets/img/changes.png)
-@snapend
-
----
-@title[Pull request]
+@title[Git flow : init]
 @snap[north span-30]
-Pull Request
+### git flow init
 @snapend
 
 @snap[south span-70]
-![](assets/img/pullrequest.png)
+![](assets/img/flow_init.png)
 @snapend
 
 ---
-@title[Pull request]
+@title[Git flow : list branch]
 @snap[north span-30]
-Pull Request
+### git branch --list
 @snapend
 
 @snap[south span-70]
-![](assets/img/pullrequest2.png)
+![](assets/img/branch_list_after_init.png)
 @snapend
 
 ---
-@title[CI]
-@ul[spaced text-white]
-- https://github.com/marketplace/category/continuous-integration
-- Find AppVeyor
-@ulend
-
----
-@title[CI]
-@snap[north span-50]
-![](assets/img/appveyor.png)
+@title[Git flow : add new feature]
+@snap[north span-30]
+### git flow feature start <feature_name>
 @snapend
 
-@snap[south span-50]
-![](assets/img/appveyor2.png)
+@snap[south span-70]
+![](assets/img/add_new_feature.png)
 @snapend
 
 ---
-@title[Bonus]
-@snap[west span-50]
-@ul[spaced text-white]
-- Bonus : Deploy (git local) web app on Azure
-@ulend
+@title[Git flow : changes feature]
+@snap[north span-30]
+### git commit -m 'Commit feature'
+### git push origin feature/<feature_name>
 @snapend
 
-@snap[east span-50]
-![](assets/img/azure.png)
+@snap[south span-70]
+![](assets/img/push_feature_origin.png)
 @snapend
 
+---
+@title[Git flow : finish feature]
+@snap[north span-30]
+### git flow feature finish <feature_name>
+### Don't forget to push develop
+@snapend
+
+@snap[south span-70]
+![](assets/img/finish_feature.png)
+@snapend
+
+---
+@title[Git flow : add new release]
+@snap[north span-30]
+### git flow release start <release_version>
+@snapend
+
+@snap[south span-70]
+![](assets/img/add_new_release.png)
+@snapend
+
+---
+@title[Git flow : changes release]
+@snap[north span-30]
+### git commit + push release
+@snapend
+
+@snap[south span-70]
+![](assets/img/changes_release.png)
+@snapend
+
+---
+@title[Git flow : finish release]
+@snap[north span-30]
+### git flow release finish <release_version>
+### Don't forget to push develop and master
+@snapend
+
+@snap[south span-70]
+![](assets/img/finish_release.png)
+@snapend
